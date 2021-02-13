@@ -1,0 +1,27 @@
+---
+title: Student
+description: >
+  Zeigt alle Basisinformationen zu einem Studenten
+type: object
+required:
+  - studentId
+properties:
+  studentId:
+    type: string
+  adresse:
+    $ref: 'basics/contact.yaml'
+  geschlecht:
+    type: w / m / unbestimmt / divers
+  nationality:
+    type: string
+  education_level:
+    $ref: 'education/school.yaml'
+  languages:
+    type: array
+    $ref: 'education/languages.yaml'
+  internships:
+    type: array
+    $ref: 'education/internship.yaml'
+  apprenticeships:
+    type: array
+    $ref: 'education/apprenticeship.yaml'

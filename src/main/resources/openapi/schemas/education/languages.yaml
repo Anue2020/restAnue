@@ -1,0 +1,15 @@
+---
+title: LanguageEducation
+description: Language Education
+type: object
+properties:
+  language:
+    type: string
+  language_level:
+    type: string
+    example: A2 (linkedin analog)
+  language_certification:
+    type: boolean
+  kind_certification:
+    type: string
+    example: europäischer referenzrahmen sprachniveau

@@ -1,0 +1,85 @@
+openapi: 3.0.1
+info:
+  version: 1.0.0
+  title: swagger anue
+  contact:
+    email: marvin@whatever.de
+  license:
+    name: Anue
+    url: http://anue.de
+servers:
+  - url: http://anue-api.student.de/api/v1
+tags:
+  - name: Student API anue
+    externalDocs:
+      description: Offizielle ...
+      url: www.asdasdasdasd.de
+
+paths:
+  /student/{studentId}/basicInformation:
+    get:
+      tags:
+        - Status
+      summary: Liefert den Status eines Studenten
+      operationId: getAllStudents
+      parameters:
+        - $ref: "#/components/parameters/studentId"
+      responses:
+        200:
+          description: OK
+          content:
+            application/json; charset=utf-8:
+              schema:
+                $ref: 'schemas/student.yaml'
+
+        "400":
+          $ref: "#/components/responses/400"
+        "401":
+          $ref: "#/components/responses/400"
+        "403":
+          $ref: "#/components/responses/400"
+        "404":
+          $ref: "#/components/responses/400"
+        "500":
+          $ref: "#/components/responses/400"
+
+components:
+  parameters:
+    studentId:
+      in: path
+      name: studentId
+      description: Interne Studenten Id
+      required: true
+      schema:
+        type: string
+      example: 85019ae8-0f47-4a60-ba6b-6c0bf3f0bd07
+    universityId:
+      in: path
+      name: universityId
+      description: Interne Universitäts Id
+      required: true
+      schema:
+        type: string
+      example: 85019ae8-0f47-4a60-ba6b-6c0bf3f0bd07
+
+  responses:
+    400:
+      description: Bad Request
+    401:
+      description: Not authorized
+    403:
+      description: Forbidden
+    404:
+      description: Not found
+    500:
+      description: Internal Server Error
+
+  schemas:
+    post-response:
+      type: object
+      description: Post-Response bei erfolgreicher ...
+      properties:
+        irgendwas_Id:
+          type: string
+          description: asdasdasd
+          example: rudolfrudio

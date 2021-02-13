@@ -1,0 +1,13 @@
+---
+title: StudyFieldInterest
+description: What study fields
+type: object
+properties:
+  category:
+    type: string
+    example: Naturwissenschaften // Nanostrukturwissenschaften
+  where_plz:
+    type: string
+  target_degree:
+    type: string
+    example:

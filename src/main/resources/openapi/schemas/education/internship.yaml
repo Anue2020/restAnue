@@ -1,0 +1,17 @@
+---
+title: Internship
+description: Internship
+type: object
+properties:
+  name_internship:
+    type: string
+  category:
+    type: string
+  when:
+    type: string
+  where_plz:
+    type: string
+  company_name:
+    type: string
+  duration:
+    type:

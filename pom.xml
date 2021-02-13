@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.3.2.RELEASE</version>
+
+    </parent>
+
+    <groupId>eu.anue</groupId>
+    <artifactId>restAnue</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <properties>
+    <java.version>11</java.version>
+
+        <!-- dependendies -->
+        <jackson.databind.version>2.11.1</jackson.databind.version>
+        <openapi-generator-version>4.1.3</openapi-generator-version>
+        <swagger-annotations.version>1.6.2</swagger-annotations.version>
+
+        <!-- Swagger / OpenApi-->
+        <swagger.gen.language>spring</swagger.gen.language>
+        <openapi.sourceFolder>src/main/gen</openapi.sourceFolder>
+        <openapi.apiPackage>anue.web.api</openapi.apiPackage>
+        <openapi.modelPackage>anue.web.model</openapi.modelPackage>
+
+        <!-- plugins -->
+        <maven-release.plugin.version>2.5</maven-release.plugin.version>
+        <maven-scm-provider-jgit.version>1.9.5</maven-scm-provider-jgit.version>
+        <build-helper-maven-plugin.version>3.0.0</build-helper-maven-plugin.version>
+
+    </properties>
+
+    <profiles>
+        <profile>
+            <id>mac</id>
+            <activation>
+                <os>
+                    <family>unix</family>
+                </os>
+            </activation>
+            <properties>
+            <os.shell>sh</os.shell>
+            <os.shell.command0></os.shell.command0>
+            <os.shell.command1></os.shell.command1>
+            <os.arg0>${basedir}/workaround-script/remove-jackson-nullable.sh</os.arg0>
+            <os.arg1>${basedir}/src/main/java/web/api/model</os.arg1>
+            <os.arg2 />
+            </properties>
+        </profile>
+    </profiles>
+
+    <dependencies>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.databind.version}</version>
+            </dependency>
+
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <version>${swagger-annotations.version}</version>
+        </dependency>
+
+        <dependency>
+                <groupId>javax.validation</groupId>
+                <artifactId>validation-api</artifactId>
+            </dependency>
+
+            <dependency>
+                <groupId>javax.annotation</groupId>
+                <artifactId>javax.annotation-api</artifactId>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-web</artifactId>
+            </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
+
+        </dependencies>
+
+    <build>
+
+        <plugins>
+            <plugin>
+                <groupId>org.openapitools</groupId>
+                <artifactId>openapi-generator-maven-plugin</artifactId>
+                <version>${openapi-generator-version}</version>
+                <executions>
+                    <execution>
+                        <id>gen-api-model</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <generateModels>true</generateModels>
+                            <generateApis>false</generateApis>
+                            <configOptions>
+                                <java8>true</java8>
+                                <dateLibrary>java8</dateLibrary>
+                            </configOptions>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>gen-api-interface</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <generateModels>false</generateModels>
+                            <generateApis>true</generateApis>
+                            <configOptions><java8>false</java8></configOptions>
+                        </configuration>
+                    </execution>
+                </executions>
+                <configuration>
+                    <generatorName>${swagger.gen.language}</generatorName>
+                    <inputSpec>${project.basedir}/src/main/resources/openapi/restAnue-openapi.yaml</inputSpec>
+                    <apiPackage>${openapi.apiPackage}</apiPackage>
+                    <modelPackage>${openapi.modelPackage}</modelPackage>
+                    <modelNameSuffix>Dto</modelNameSuffix>
+                    <output>.</output>
+                    <generateModelDocumentation>false</generateModelDocumentation>
+                    <generateApiDocumentation>false</generateApiDocumentation>
+                    <generateSupportingFiles>false</generateSupportingFiles>
+                    <configOptions>
+                        <sourceFolder>${openapi.sourceFolder}</sourceFolder>
+                        <interfaceOnly>true</interfaceOnly>
+                        <generateApiTests>false</generateApiTests>
+                        <useTags>true</useTags>
+
+                    </configOptions>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.6.0</version>
+                <executions>
+                    <execution>
+                        <id>Model Post Processing</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                        <executable>${os.shell}</executable>
+                            <arguments>
+                                <argument>${os.arg0}</argument>
+                                <argument>${os.arg1}</argument>
+                                <argument>${os.arg2}</argument>
+                            </arguments>
+                    </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <version>${maven-release.plugin.version}</version>
+                <artifactId>maven-release-plugin</artifactId>
+                <configuration>
+                    <providerImplementations>
+                        <git>jgit</git>
+                    </providerImplementations>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.maven.scm</groupId>
+                        <artifactId>maven-scm-provider-jgit</artifactId>
+                        <version>${maven-scm-provider-jgit.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <followSymLinks>false</followSymLinks>
+                    <filesets>
+                        <fileset>
+                            <directory>${basedir}/${openapi.sourceFolder}</directory>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+            <!-- Compile Einstellungen -->
+           <plugin>
+               <groupId>org.apache.maven.plugins</groupId>
+               <artifactId>maven-javadoc-plugin</artifactId>
+
+           </plugin>
+           <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+               <artifactId>maven-javadoc-plugin</artifactId>
+               <executions>
+                   <execution>
+                       <goals>
+                           <goal>jar</goal>
+                       </goals>
+                   </execution>
+               </executions>
+           </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>${build-helper-maven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>add-source</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>${project.basedir}/{$openapi.sourceFolder}/</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
