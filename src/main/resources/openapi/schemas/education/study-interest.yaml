@@ -11,3 +11,6 @@ properties:
   target_degree:
     type: string
     example:
+  prefered_study_language:
+    type: string
+    example: Chinese, English, German, etc.

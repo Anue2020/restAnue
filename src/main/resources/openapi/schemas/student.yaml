@@ -25,3 +25,12 @@ properties:
   apprenticeships:
     type: array
     $ref: 'education/apprenticeship.yaml'
+  wartesemester:
+    type: number
+    example: 1 oder 2 (diff von abi-dateNow)
+  study_current_state:
+    type: array
+    $ref: 'education/study-current-state.yaml'
+  soft-criterias:
+    type: array
+    $ref: 'education/soft-criteria.yaml'

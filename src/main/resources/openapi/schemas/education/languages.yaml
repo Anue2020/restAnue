@@ -13,3 +13,6 @@ properties:
   kind_certification:
     type: string
     example: europäischer referenzrahmen sprachniveau
+  german_certification:
+    type: boolean
+    example: Goethe Sprache Zertifikation Nachweis vorhanden

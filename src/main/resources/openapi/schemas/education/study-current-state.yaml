@@ -1,0 +1,21 @@
+---
+title: Current State Study
+description: Are you studying already
+type: object
+properties:
+  yes/no:
+    type: boolean
+    example: bereits irgendwo eingeschrieben
+  fachfremd:
+    type: boolean
+  field:
+    type: string
+    example:
+  degreed:
+    type: boolean
+  degree_level:
+    type: string
+    example: grundstudium, bachelor, master, PhD
+  reason_why:
+    type: string
+    example: types could be location, difficulty, other reason, interest

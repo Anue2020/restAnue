@@ -1,0 +1,11 @@
+---
+title: UniversitySpareTimeOffers
+description: ...
+type: object
+properties:
+  category:
+    type: string
+    example: Sport, Sprachkurse, Unternehmensevents, Gastbeitraege
+  abroad_term_opportunity:
+    type: boolean
+    example: Auslandssemester obligatorisch

@@ -1,0 +1,17 @@
+---
+title: SoftCriteriaStudyInterests
+description: oft Criteria study of Interests
+type: object
+properties:
+  care_rate:
+    type: number
+    description: z.B. am Audimax multipliziert mit Professoren/Studenten-quote * vollmond
+    example: 1 oder 2 oder 3
+  digitalization_level:
+    type: number
+    description: Digitalisierungsgrad der Hochschule
+    example: 1 oder 2 oder 3
+  sparetime-offer:
+    type: array
+    $ref: 'education/university-spareteime-offer.yaml'
+
