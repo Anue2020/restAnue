@@ -8,6 +8,9 @@ properties:
     example: Naturwissenschaften // Nanostrukturwissenschaften
   where_plz:
     type: string
+  category_university_location:
+    type: number
+    example: 1 = urban, 2=rural, 3=subs 4= 50km entfernt von rural
   target_degree:
     type: string
     example:

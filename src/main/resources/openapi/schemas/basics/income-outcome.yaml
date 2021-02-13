@@ -1,0 +1,13 @@
+---
+title: Income/Outcome
+description: >
+  Which income and where do you get it
+type: object
+properties:
+  incomes:
+    type: array
+    $ref: 'income-types.yaml'
+    description: bafoeg, parents, scholarships, self work
+  fixed_outcome:
+    type: number
+    description: rent and other fix costs

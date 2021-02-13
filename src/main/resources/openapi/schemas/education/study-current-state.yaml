@@ -19,3 +19,5 @@ properties:
   reason_why:
     type: string
     example: types could be location, difficulty, other reason, interest
+  disabled_support_level:
+    type: number

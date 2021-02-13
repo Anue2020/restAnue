@@ -34,3 +34,8 @@ properties:
   soft-criterias:
     type: array
     $ref: 'education/soft-criteria.yaml'
+  student_sparetime_requests:
+    type: array
+    $ref: 'education/student-sparetime-request.yaml'
+  income:
+    $ref: 'basics/income-outcome.yaml'
