@@ -1,0 +1,38 @@
+---
+title: Student
+description: >
+  Zeigt alle Basisinformationen zu einem Studenten
+type: object
+required:
+  - studentId
+properties:
+  studentId:
+    type: string
+  contact:
+    $ref: 'basics/contact.yaml'
+  geschlecht:
+    type: w / m / unbestimmt / divers
+  nationality:
+    type: string
+  education_level:
+    $ref: 'education/school.yaml'
+  languages:
+    type: array
+    $ref: 'education/languages.yaml'
+  internships:
+    type: array
+    $ref: 'education/internship.yaml'
+  apprenticeships:
+    type: array
+    $ref: 'education/apprenticeship.yaml'
+  wartesemester:
+    type: number
+    example: 1 oder 2 (diff von abi-dateNow)
+  study_current_state:
+    type: array
+    $ref: 'education/study-current-state.yaml'
+  soft-criterias:
+    type: array
+    $ref: 'education/soft-criteria.yaml'
+  income:
+    $ref: 'basics/income.yaml'

@@ -1,0 +1,14 @@
+---
+title: SchoolEducation
+description: School Education
+type: object
+properties:
+  degree_category:
+    type: string
+    example: School Leaving Certificate (fuer Hauptschule) // comprehensive school usw
+  when:
+    type: string
+  where_plz:
+    type: string
+  grade:
+    type: number

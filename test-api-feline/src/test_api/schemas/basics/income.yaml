@@ -1,0 +1,14 @@
+---
+title: IncomeTypes
+description: >
+  Which income and where do you get it
+type: object
+properties:
+  income_type:
+    type: string
+    description: from dropdown menu
+    example: "from parents"
+  income_amount:
+    type: float
+    example: 580,00
+    description: how much income from single source

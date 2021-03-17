@@ -1,0 +1,19 @@
+---
+title: Contact
+description: Kontaktinformationen
+type: object
+required:
+  - email
+  - stadt_plz
+properties:
+  email:
+    type: string
+  stadt_plz:
+    type: string
+  bundesland_heimat:
+    type: string
+  instagram:
+    type: string
+  facebook:
+    type: string
+

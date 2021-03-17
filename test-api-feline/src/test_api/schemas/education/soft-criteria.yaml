@@ -1,0 +1,39 @@
+---
+title: SoftCriteriaStudyInterests
+description: oft Criteria study of Interests
+type: object
+properties:
+  care_rate:
+    type: number
+    description: z.B. am Audimax multipliziert mit Professoren/Studenten-quote * vollmond
+    example: 1 oder 2 oder 3
+  digitalization_level:
+    type: number
+    description: Digitalisierungsgrad der Hochschule
+    example: 1 oder 2 oder 3
+  sparetime-requests:
+    type: array
+    $ref: 'education/spareteime-request.yaml'
+  level_socialscore:
+    type: number
+    example: aktive Studentenschaft
+  library_score:
+    type: number
+    example: capacity, opening times, remote access
+  university_cafetria:
+    type: number
+    example: Mensa changing menu rates, vegan, vegetarian, locations, price
+  children_daycare:
+    type: boolean
+  nature_related_location:
+    type: number
+    example: mountain, lakes, ocean
+  is_college_town:
+    type: boolean
+    example: Ist es eine Studentenstadt (Studenten/Einwohner)
+  is_young_town:
+    type: boolean
+    example: Demografische Struktur (unter 35 im Verhaeltnis Einwohnerzahl)
+  lifstyle-request:
+    type: array
+    $ref: 'education/lifestyle-request.yaml'

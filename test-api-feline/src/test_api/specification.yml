@@ -1,0 +1,94 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: "Anue Rest"
+  contact:
+    email: "marvin@whatever.de"
+  license:
+    name: "Anue"
+    url: "http://anue.de"
+basePath: "/api/v1"
+servers:
+  - url: "http://anue-api.student.de/api/v1"
+tags:
+  - name: "Student API anue"
+consumes:
+  - "application/json"
+produces:
+  - "application/json"
+
+paths:
+  /student:
+    post:
+      #todo: in service studentId should be created upon post command
+      tags:
+        - "Student"
+      summary: "add a new student"
+      operationId: "add_student" #explicit routing would be test_api.web.controllers.student_controller.add_student
+      #if path www.anue.eu/student is provided in POST request it would be handled by the function "add_student" in "app"/"controller" module
+      parameters:
+        -in: "body"
+        name: "body"
+        description: a student with new ID to add
+        required: true
+      responses:
+        201:
+          description: "student added"
+          content:
+            application/json:
+              schema:
+                $ref: "#/schemas/student.yaml"
+        x-swagger-router-controller: "test_api.student_api_controller.StudentApiController"
+  /student/{studentId}:
+    get:
+      tags: # used to group operations logically by resources or any other qualifier
+        - "Student"
+      summary: "Liefert einen Studenten über Id im path"
+      operationId: "get_student"
+      produces:
+        - "application/json"
+      parameters:
+        - name: studentId
+          in: path
+          required: true
+          description: the parameter studentId passed via URL path
+          type: string
+      responses:
+        200:
+          description: "Successfully retrieved student"
+        400:
+          description: "Student doesn't exist"
+      x-swagger-router-controller: "test_api.student_api_controller.StudentApiController"# used by Connexion to map which module (and function) to send requests to;
+      #so a get request send to /api/v1/student will go to test_api.web.controllers.student_controller and call the function "get_student" as defined through operation_id
+    #todo: define other CRUD operations
+    put:
+      tags:
+        - "Student"
+      summary: "update or replace information regarding student"
+      operationId: "update_student"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: studentId
+          in: path
+          required: true
+          description: the parameter studentId passed via URL path
+          type: string
+        - name: "Student"
+          in: "body"
+          required: true
+      responses:
+        200:
+          description: "Successfully updated student"
+        404:
+          description: "Student doesn't exist"
+        x-swagger-router-controller: "test_api.student_api_controller.StudentApiController"
+    #todo: add block for definitions -but those are model definitions.. we defined models separately anyways..?
+#  definitions:
+#    Student:
+#      type: object
+#      additionalProperties: true
+#      required:
+#        - "studentId"

@@ -1,0 +1,27 @@
+---
+title: Question
+description: >
+  Ich bin eine Frage
+type: object
+properties:
+  studentId:
+    type: string
+  questionId:
+    type: string
+  quantifier:
+    type: number
+    example: 1-5 Gewichtung
+  answer:
+    type: string
+    example: "Dont like chinese food"
+  comment:
+    type: string
+    example: "Ne, find ich doof"
+  yes/no:
+    type: boolean
+  optionyes/no:
+    type: boolean
+  optionYes/no:
+    type: boolean
+  question:
+    $ref: 'basics/question.yaml'

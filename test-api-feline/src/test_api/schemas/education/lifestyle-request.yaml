@@ -1,0 +1,21 @@
+---
+title: LifestyleRequests
+description: Request different Lifestyle attributes
+type: object
+properties:
+  lifestyle_product_name:
+    type: string
+    example: h&m, hollister
+  distance:
+    type: float
+    example: e.g. 2,5 km Entfernungsmaß
+  density:
+    type: number
+    example: Häufigkeitsverteilungsdichte als Maß
+  category:
+    type: string
+    example: food, shopping, religion, sport, bar, clubs, theater, museum, politics
+  sub_category:
+    type: string
+    description: hiphop club, low cheap clothes
+    example: ...

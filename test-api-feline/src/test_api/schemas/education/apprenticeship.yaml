@@ -1,0 +1,13 @@
+---
+title: ApprenticeshipEducation
+description: Apprenticeship Education
+type: object
+properties:
+  degree:
+    type: string
+  when:
+    type: string
+  where_plz:
+    type: string
+  grade:
+    type: number

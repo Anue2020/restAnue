@@ -1,0 +1,14 @@
+---
+title: SpareTimeRequest
+description: ...
+type: object
+properties:
+  activity_name:
+    type: string
+    example: rowing
+  distance:
+    type: float
+    example: within 10,5 km
+  category:
+    type: string
+    example: Sport, Sprachkurse, Unternehmensevents, Gastbeitraege
